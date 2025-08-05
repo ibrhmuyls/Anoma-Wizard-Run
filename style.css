@@ -1,0 +1,294 @@
+/* Body tam ekran ve içeriği ortalar */
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #2b0000 0%, #100000 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  user-select: none;
+  font-family: Arial, sans-serif;
+  color: #eee;
+  gap: 20px;
+}
+
+#canvas-container {
+  position: relative;
+  width: 1400px;
+  height: 700px;
+  background: radial-gradient(circle at center, rgba(255, 60, 60, 0.4), rgba(80, 0, 0, 0.1) 80%);
+  box-shadow: 0 0 30px 8px rgba(255, 50, 50, 0.3);
+  border-radius: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Canvas: container içinde tam ortalı */
+canvas {
+  display: block;
+  width: 1400px;  /* Orijinal canvas genişliği */
+  height: 700px; /* Orijinal canvas yüksekliği */
+  border-radius: 15px;
+  border: 2px solid #444;
+  image-rendering: pixelated;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(to top, #70c5ce, #fff);
+}
+#start-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(30, 30, 30, 0.9); /* biraz daha opak */
+  border-radius: 16px;
+  padding: 40px 50px; /* paddingleri biraz dengeli azalt */
+  box-shadow: 0 0 40px rgba(255, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* üstten hizala */
+  align-items: center;
+  gap: 30px; /* biraz daha boşluk */
+  width: 1100px;
+  max-width: 90vw;
+  z-index: 200;
+  box-sizing: border-box; /* padding içeri dahil olsun */
+}
+
+#start-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 16px;
+  color: #eee;
+  line-height: 1.6;
+  user-select: none;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 10px;
+  overflow-wrap: break-word;
+  
+  /* İstersen aşağıdaki satırı ekleyebilirsin */
+  /* min-height: 150px; */
+}
+
+#start-info hr {
+  border-color: rgba(255, 255, 255, 0.15);
+  margin: 20px 0;
+}
+
+#start-info b, #start-info strong {
+  font-weight: 700;
+}
+
+#start-info small {
+  font-size: 12px;
+  color: #bbb;
+  display: block;
+  margin-top: 15px;
+}
+
+
+
+
+#startBtn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 24px; /* Butonu küçülttüm */
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(45deg, #ff0000, #ff5555);
+  border: none;
+  border-radius: 12px;
+  padding: 12px 40px; /* Daha küçük buton */
+  cursor: pointer;
+  box-shadow: 0 0 15px #ff4444;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  width: fit-content;
+}
+#startBtn:hover {
+  background: linear-gradient(45deg, #ff5555, #ff0000);
+  box-shadow: 0 0 25px #ff2222;
+}
+
+/* Bilgi metni */
+#info {
+  font-size: 14px;
+  color: #ccc;
+}
+
+#gameOverText {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px 40px;
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+#gameOverText span {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.overlay-box {
+  background: #222;
+  color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  width: 300px;
+}
+
+.hidden {
+  display: none !important;
+}
+/* Neon efektli kazanma overlay - yeşil versiyonu */
+#win-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle, rgba(0, 30, 0, 0.9), rgba(0, 0, 0, 1));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.neon-box {
+  background: rgba(10, 30, 10, 0.9);
+  border: 2px solid #33cc33;
+  border-radius: 20px;
+  padding: 40px 60px;
+  text-align: center;
+  box-shadow: 0 0 25px #33cc33, 0 0 80px #33cc33 inset;
+  animation: flicker-green 3s infinite alternate;
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+  max-width: 500px;
+  width: 90%;
+}
+
+/* Başlık */
+#win-title {
+  font-size: 2.4em;
+  color: #33cc33;
+  text-shadow: 0 0 10px #33cc33, 0 0 30px #33cc33;
+  margin-bottom: 20px;
+}
+
+#win-message {
+  font-size: 1.0em;
+  margin-bottom: 10px;
+  color: #eee;
+}
+
+#win-points {
+  font-size: 2.0em;
+  color: #77ff77;
+  line-height: 1.6;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+/* Restart butonu */
+#win-restart-btn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
+  background: linear-gradient(45deg, #33cc33, #66ff66);
+  border: none;
+  padding: 16px 40px;
+  color: black;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 20px #55dd55;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#win-restart-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px #77ff77;
+}
+
+/* Neon kutu animasyonu - yeşil versiyonu */
+@keyframes flicker-green {
+  0% { box-shadow: 0 0 10px #33cc33, 0 0 40px #33cc33 inset; }
+  50% { box-shadow: 0 0 30px #33cc33, 0 0 60px #33cc33 inset; }
+  100% { box-shadow: 0 0 20px #33cc33, 0 0 50px #33cc33 inset; }
+}
+
+/* Kırmızı neon “kaybettin” kutu */
+.red-box {
+  background: rgba(30, 0, 0, 0.9);
+  border: 2px solid #ff3333;
+  box-shadow: 0 0 25px #ff3333, 0 0 80px #ff3333 inset;
+  animation: flicker-red 3s infinite alternate;
+}
+
+#lose-title {
+  font-size: 2.4em;
+  color: #ff3333;
+  text-shadow: 0 0 10px #ff3333, 0 0 30px #ff3333;
+  margin-bottom: 20px;
+}
+
+#lose-message {
+  font-size: 1em;
+  margin-bottom: 10px;
+  color: #eee;
+}
+
+#lose-stats {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  color: #ff9999;
+}
+
+#lose-restart-btn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
+  background: linear-gradient(45deg, #ff3333, #ff6666);
+  border: none;
+  padding: 16px 40px;
+  color: black;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 20px #ff4444;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#lose-restart-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px #ff6666;
+}
+
+@keyframes flicker-red {
+  0% { box-shadow: 0 0 10px #ff3333, 0 0 40px #ff3333 inset; }
+  50% { box-shadow: 0 0 30px #ff3333, 0 0 60px #ff3333 inset; }
+  100% { box-shadow: 0 0 20px #ff3333, 0 0 50px #ff3333 inset; }
+}

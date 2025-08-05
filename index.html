@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anoma Wizard Run</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- Canvas container -->
+<div id="canvas-container">
+  <canvas id="gameCanvas" width="1200" height="750"></canvas>
+<!-- WIN OVERLAY: Oyun Bittiğinde Gösterilecek Panel -->
+<div id="win-overlay" class="overlay hidden">
+  <div class="overlay-box neon-box">
+    <h2 id="win-title">🏁 MISSION COMPLETE</h2>
+    <p id="win-message">You outran the future itself!</p>
+    <p id="win-points">Total Fitcoins: 0</p>
+    <button id="win-restart-btn">RESTART</button>
+  </div>
+</div>
+  <!-- Start overlay -->
+<div id="start-overlay">
+<div id="start-info">
+  <h3>🎮 Welcome to <strong>Anoma Wizard Run</strong></h3>
+
+  <p>
+    🧙‍♂️ Your mission: Collect <strong>1000 FITCOIN</strong> to complete the run!<br />
+    💎 Collect diamonds to increase your <strong>POINTS</strong> score.<br />
+    ❤️ You have <strong>3 lives</strong>. Avoid traps and stay alive!
+  </p>
+
+  <hr style="border-color:#444;width: 60%;">
+
+  <p>
+    <img src="assets/fitcoin.png" width="24" /> <strong>Fitcoin:</strong> Main collectible objective.<br />
+    <img src="assets/red_diamond.png" width="24" /> <strong>Red Diamond:</strong> Grants invisibility (invincibility).<br />
+    <img src="assets/wizard_hat.png" width="24" /> <strong>Hat:</strong> Temporarily boosts your speed.<br />
+    <img src="assets/bubble.png" width="24" /> <strong>Bubble:</strong> Pulls nearby coins and diamonds to you like a magnet.<br />
+    <img src="assets/shrimp.png" width="24" /> <strong>Shrimp:</strong> Restores one life.<br />
+    <img src="assets/arrow.png" width="24" /> <strong>Arrow Traps:</strong> Obstacles that reduce your lives on collision.
+  </p>
+
+  <hr style="border-color:#444;width: 60%;">
+
+  <p style="font-size: 12px; color: #aaa;">
+    <strong>Legal Disclaimer:</strong><br />
+    This game was developed solely for entertainment and educational purposes as a fan-made project by an independent developer. It is <strong>non-commercial</strong>, <strong>not affiliated with</strong>, nor endorsed by the official Anoma Foundation or any related entity.<br /><br />
+    All visual assets (icons, sprites, images) are either original creations or inspired by publicly available references. No copyright infringement is intended. If you are a rights holder and wish to raise a concern, please contact the developer for prompt resolution.<br /><br />
+    By playing this game, you acknowledge that it is provided "as-is" with no guarantees of stability or uptime. Use at your own risk.
+  </p>
+</div>
+
+  <button id="startBtn">START</button>
+</div>
+
+<!-- LOSE OVERLAY: Canlar tükendiğinde gösterilecek panel -->
+<div id="lose-overlay" class="overlay hidden">
+  <div class="overlay-box neon-box red-box">
+    <h2 id="lose-title">💀 YOU DIED</h2>
+    <p id="lose-message">Oops! Better luck next time.</p>
+    <p id="lose-stats">Fitcoins: <span id="lose-coins">0</span> | Points: <span id="lose-points">0</span></p>
+    <button id="lose-restart-btn">RESTART</button>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
