@@ -1714,7 +1714,7 @@ document.addEventListener('keyup', (e) => {
 
 startBtn.addEventListener('click', () => {
   if (!allImagesLoaded()) {
-    alert('Animation frames are loading, please wait...');
+    alert('Animation frames are loading, please wait a few seconds and press the start button again...');
     return;
   }
 
@@ -1762,3 +1762,4 @@ document.getElementById('win-overlay').classList.add('hidden');
   // Oyun döngüsü başlatılıyor
   requestAnimationFrame(gameLoop);
 });
+
